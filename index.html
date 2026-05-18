@@ -1,6 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '604495112519044'); // Aapki Pixel ID lag gayi hai
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=604495112519044&ev=PageView&noscript=1"
+    /></noscript>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JAICLUB VIP - Ultimate Recovery</title>
@@ -136,7 +151,7 @@
 
     <div class="click-here">👇 Click Here to join 👇</div>
 
-    <a href="https://t.me/+2LSDqxfhPpRlMTM1" class="btn">JOIN VIP TELEGRAM</a>
+    <a href="https://t.me/+2LSDqxfhPpRlMTM1" class="btn" onclick="trackLeadEvent()">JOIN VIP TELEGRAM</a>
 
     <div class="timer-container">
         <div class="time-box"><span class="num">00</span><span class="label">Days</span></div>
@@ -150,13 +165,23 @@
         const tgLink = "https://t.me/+2LSDqxfhPpRlMTM1";
         const secondsElement = document.getElementById('seconds');
 
+        // Pixel Event Function
+        function trackLeadEvent() {
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Lead');
+            }
+        }
+
         const timer = setInterval(() => {
             timeLeft--;
             secondsElement.innerText = '0' + timeLeft;
 
             if (timeLeft <= 0) {
                 clearInterval(timer);
-                window.location.href = tgLink; 
+                trackLeadEvent(); // Auto-redirect se pehle track karega
+                setTimeout(() => {
+                    window.location.href = tgLink; 
+                }, 100);
             }
         }, 1000); 
     </script>
